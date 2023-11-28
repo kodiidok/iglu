@@ -29,13 +29,10 @@ void init() {
 
 void loadObjects() {
 
-    Grid grid;
-    grid.create(20, 20);
+    
 }
 
-void display() {
-
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+void scene() {
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -54,8 +51,19 @@ void display() {
     // Apply translation to the scene
     glTranslatef(posX, posY, posZ);
 
+    Grid grid;
+    grid.create(20, 20);
+
     loadObjects();
 
+}
+
+void display() {
+
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    
+    scene();
+    
     glutSwapBuffers();
 
 }

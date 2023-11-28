@@ -2,9 +2,9 @@
 #ifndef MODELS_H
 #define MODELS_H
 
-#include "grid.h"
-#include "indicator.h"
+#include "Includes/grid.h"
+#include "Includes/indicator.h"
 
-#include "cube.h"
+#include "Includes/cube.h"
 
 #endif
