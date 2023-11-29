@@ -16,28 +16,25 @@
     <Filter Include="Source Files\Models">
       <UniqueIdentifier>{6277bf88-17b8-48c9-84ff-280e3cc9d5b7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Models\Cube">
-      <UniqueIdentifier>{414125e2-48a8-4498-9fff-5629c8453a55}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Models\Grid">
-      <UniqueIdentifier>{617e0cb6-fc7b-4ba3-a986-f35079ca71a9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Models\Indicator">
-      <UniqueIdentifier>{d537abc6-5c5a-4150-9eca-d5d4a26ed301}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cube.cpp">
-      <Filter>Source Files\Models\Cube</Filter>
+      <Filter>Source Files\Models</Filter>
     </ClCompile>
     <ClCompile Include="grid.cpp">
-      <Filter>Source Files\Models\Grid</Filter>
+      <Filter>Source Files\Models</Filter>
     </ClCompile>
     <ClCompile Include="indicator.cpp">
-      <Filter>Source Files\Models\Indicator</Filter>
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="primitives.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="materials.cpp">
+      <Filter>Source Files\Models</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +48,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="indicator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="primitives.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="materials.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

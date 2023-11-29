@@ -32,7 +32,13 @@ void init() {
 
 void loadObjects() {
 
-    glutSolidCube(1);
+    glPushMatrix();
+        glTranslatef(2.0f, 0.0f, 0.0f);
+        glutSolidCube(1);
+    glPopMatrix();
+    
+    Cube cube;
+    cube.create();
 
 }
 

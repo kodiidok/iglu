@@ -5,7 +5,7 @@ Grid::Grid() {
 }
 
 void Grid::create(int x, int z) {
-    glColor3f(0.2f, 0.2f, 0.2f);
+    //glColor3f(0.2f, 0.2f, 0.2f);
 
     // Draw lines along the Z-axis
     glBegin(GL_LINES);
@@ -23,5 +23,24 @@ void Grid::create(int x, int z) {
         glVertex3f(-x / 2.0f, 0.0f, zPos);
         glVertex3f(x / 2.0f, 0.0f, zPos);
     }
+    glEnd();
+
+    // Draw axes
+    glBegin(GL_LINES);
+
+        glLineWidth(3);
+
+        glColor3f(1.0, 0.0, 0.0);
+        glVertex3f(0, 0, 0);
+        glVertex3f(1, 0, 0);
+
+        glColor3f(0.0, 1.0, 0.0);
+        glVertex3f(0, 0, 0);
+        glVertex3f(0, 1, 0);
+
+        glColor3f(0.0, 0.0, 1.0);
+        glVertex3f(0, 0, 0);
+        glVertex3f(0, 0, 1);
+
     glEnd();
 }
