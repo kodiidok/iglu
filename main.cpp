@@ -1,7 +1,7 @@
 
+#include <iostream>
 #include <GL/glut.h>
 #include <math.h>
-#include <stdio.h>
 
 #include "models.h"
 
@@ -19,6 +19,9 @@ GLfloat camX = 0.0f;
 GLfloat camY = 0.0f;
 GLfloat camZ = 0.0f;
 
+int screenWidth = glutGet(GLUT_SCREEN_WIDTH);
+int screenHeight = glutGet(GLUT_SCREEN_HEIGHT);
+
 void init() {
 
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -29,13 +32,28 @@ void init() {
 
 void loadObjects() {
 
-    
+    glutSolidCube(1);
+
 }
 
-void scene() {
+void viewportLights(bool enable) {
 
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
+    if (enable) {
+        glEnable(GL_LIGHTING);
+    }
+    else {
+        glDisable(GL_LIGHTING);
+    }
+
+    glEnable(GL_LIGHT0);
+
+    GLfloat light0_position[4] = { 4.0f, 4.0f, 4.0f, 1.0f };
+
+    glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
+
+}
+
+void camera() {
 
     gluLookAt(
         3.0, 3.0, 3.0,  // Eye position
@@ -51,6 +69,16 @@ void scene() {
     // Apply translation to the scene
     glTranslatef(posX, posY, posZ);
 
+}
+
+void scene() {
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+
+    viewportLights(true);
+    camera();
+
     Grid grid;
     grid.create(20, 20);
 
@@ -61,7 +89,7 @@ void scene() {
 void display() {
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
+
     scene();
     
     glutSwapBuffers();
@@ -78,6 +106,16 @@ void reshape(GLsizei w, GLsizei h) {
     glLoadIdentity();
 
     gluPerspective(120.0, aspect_ratio, 1.0, 100.0);
+}
+
+void keyboardSpecial(int key, int x, int y) {
+
+    switch (key)
+    {
+    default:
+        break;
+    }
+
 }
 
 void keyboard(unsigned char key, int x, int y) {
@@ -119,19 +157,42 @@ void keyboard(unsigned char key, int x, int y) {
     case '9': // Numpad 9: Rotate around Z-axis in the negative direction
         rotZ -= 5.0f;
         break;
+    case 'f': //toggle screenmode
+        if (glutGetModifiers() == GLUT_ACTIVE_ALT) {
+            glutFullScreen();
+        }
+        break;
+    case 27: // ASCII code for the Escape key
+        glutReshapeWindow(screenWidth / 2, screenHeight / 2);
+        glutPositionWindow(100, 100);
+        break;
     }
 
     glutPostRedisplay();
 }
 
+void instructions() {
+
+    std::cout << "Welcome to Rubik's Cube Engine!\n--------------------------------\n" << std::endl;
+
+    std::cout << "Controls\n" << std::endl;
+
+    std::cout << "ALT + F\t\tToggle On Fullscreen" << std::endl;
+    std::cout << "ESC\t\tToggle Off Fullescreen" << std::endl;
+
+}
+
 int main(int argc, char** argv) {
+
+    instructions();
 
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH | GLUT_RGBA);
 
-    glutInitWindowSize(720, 480);
-    glutInitWindowPosition(300, 150);
+    glutInitWindowSize(screenWidth, screenHeight);
+    glutInitWindowPosition(0, 0);
     glutCreateWindow("Window");
+    glutFullScreen();
 
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);
