@@ -27,35 +27,40 @@ void init() {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClearDepth(1);
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_LIGHTING);
 
 }
 
 void loadObjects() {
+    
+    Plane plane;
+    Cube cube;
 
     glPushMatrix();
-        glTranslatef(2.0f, 0.0f, 0.0f);
-        glutSolidCube(1);
+        glScalef(5.0f, 5.0f, 5.0f);
+        plane.create();
     glPopMatrix();
-    
-    Cube cube;
-    cube.create();
+
+    glPushMatrix();
+        glTranslatef(0.0f, 0.5f, 0.0f);
+        cube.create();
+    glPopMatrix();
 
 }
 
-void viewportLights(bool enable) {
-
-    if (enable) {
-        glEnable(GL_LIGHTING);
-    }
-    else {
-        glDisable(GL_LIGHTING);
-    }
+void viewportLights() {
 
     glEnable(GL_LIGHT0);
 
-    GLfloat light0_position[4] = { 4.0f, 4.0f, 4.0f, 1.0f };
+    GLfloat light0_position[] = { 2.0f, 2.0f, 2.0f, 2.0f };
+    GLfloat light0_ambient[] = { 0.2f, 0.2f, 0.2f, 1.0f };
+    GLfloat light0_diffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+    GLfloat light0_specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 
     glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
+    glLightfv(GL_LIGHT0, GL_AMBIENT, light0_ambient);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, light0_diffuse);
+    glLightfv(GL_LIGHT0, GL_SPECULAR, light0_specular);
 
 }
 
@@ -82,11 +87,17 @@ void scene() {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-    viewportLights(true);
+    viewportLights();
     camera();
 
+    glEnable(GL_COLOR_MATERIAL);
+
     Grid grid;
-    grid.create(20, 20);
+    //grid.create(20, 20);
+
+    glDisable(GL_COLOR_MATERIAL);
+
+    glShadeModel(GL_SMOOTH);
 
     loadObjects();
 

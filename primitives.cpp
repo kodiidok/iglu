@@ -1,5 +1,6 @@
 
 #include "primitives.h"
+#include "materials.h"
 #include <GL/glut.h>
 #include <math.h>
 
@@ -11,8 +12,12 @@ void Primitives::surface4(float* v1, float* v2, float* v3, float* v4) {
 
     float* normal = calculateNormals(v4, v1, v3);
     
-    glBegin(GL_POLYGON);
     glNormal3fv(&normal[0]);
+
+    Materials material;
+    material.apply(material.white, &material.white[4], &material.white[8], material.white[12]);
+
+    glBegin(GL_POLYGON);
         glVertex3fv(v4);
         glVertex3fv(v3);
         glVertex3fv(v2);

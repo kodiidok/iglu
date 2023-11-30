@@ -6,5 +6,7 @@
 #include "indicator.h"
 
 #include "cube.h"
+#include "primitives.h"
+#include "plane.h"
 
 #endif

@@ -138,6 +138,7 @@
     <ClCompile Include="indicator.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="materials.cpp" />
+    <ClCompile Include="plane.cpp" />
     <ClCompile Include="primitives.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +147,7 @@
     <ClInclude Include="indicator.h" />
     <ClInclude Include="materials.h" />
     <ClInclude Include="models.h" />
+    <ClInclude Include="plane.h" />
     <ClInclude Include="primitives.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
